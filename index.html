@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mestr - Curs GRATUIT: Devino Instalator Profesionist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-text {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0 Q300,50 600,20 T1200,30 L1200,0 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,107,107,0.6);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .stat h3 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .program {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .day {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .day h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .day ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .day li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .day li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #51cf66;
+            font-weight: bold;
+        }
+
+        .instructors {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .instructor-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .instructor-card h3 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .instructor-role {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .form-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .urgency-banner {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .success-message {
+            display: none;
+            background: #51cf66;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .details-box {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .details-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .details-box li {
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .details-box strong {
+            color: #ffd43b;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo-text">MESTR</div>
+            </div>
+            <div class="contact-info">
+                📞 0771 354 408 | ✉️ vincze.richard@yahoo.com
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="badge">🎓 CURS 100% GRATUIT</div>
+            <h1>Descoperă Cum Poți Câștiga 3.000-6.000€/Lună ca Instalator Profesionist</h1>
+            <h2>Workshop GRATUIT de 2 zile care îți arată exact cum să construiești o carieră profitabilă în instalații sanitare</h2>
+            <a href="#inscriere" class="cta-button">VREAU LOC GRATUIT →</a>
+            
+            <div class="details-box">
+                <ul>
+                    <li><strong>📅 Când:</strong> Marți & Miercuri, Săptămânal | 20:00 - 21:30</li>
+                    <li><strong>💻 Unde:</strong> Online pe Zoom (de acasă)</li>
+                    <li><strong>💰 Preț:</strong> GRATUIT (locuri limitate)</li>
+                    <li><strong>👥 Locuri:</strong> Doar 20 de participanți/sesiune</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="section">
+            <div class="stats">
+                <div class="stat">
+                    <h3>3.000-6.000€</h3>
+                    <p>Câștig lunar mediu în Europa</p>
+                </div>
+                <div class="stat">
+                    <h3>500.000+</h3>
+                    <p>Locuri de muncă disponibile în UE</p>
+                </div>
+                <div class="stat">
+                    <h3>2 zile</h3>
+                    <p>Pentru a descoperi potențialul</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Ce Vei Descoperi în Acest Workshop GRATUIT</h2>
+            <div class="benefits">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Potențialul de Câștig REAL</h3>
+                    <p>Cifre exacte: cât câștigi în România vs străinătate, prețuri pe lucrări, venit lunar realist pentru începători și profesioniști</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>Cererea de Pe Piață</h3>
+                    <p>Date concrete despre lipsa de instalatori în România și UE, oportunități de angajare și freelancing, perspective pe termen lung</p>
+                </div>
+                <div class="benefit-card">
+                    <div-icon">🔧</div>
+                    <h3>Ce Lucrări Poți Face</h3>
+                    <p>Exemple reale de proiecte: de la instalații simple la complexe, prețuri pe piață, ce clienți vei avea</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Traseul Tău Exact</h3>
+                    <p>Pași clari de la zero la instalator profesionist, ce cursuri/certificări sunt necesare, cât timp îți ia</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🌍</div>
+                    <h3>Oportunități Internaționale</h3>
+                    <p>Cum poți lucra legal în Germania, Austria, UK, Olanda, programe de recrutare, salarii comparative</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">✅</div>
+                    <h3>Dovezi Concrete</h3>
+                    <p>Facturi reale, contracte, studii de caz, testimoniale de la absolvenți care deja lucrează</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Programul Celor 2 Zile</h2>
+            <div class="program">
+                <div class="day">
+                    <h3>🗓️ Ziua 1 - Marți, 20:00-21:30: Oportunitatea</h3>
+                    <ul>
+                        <li>Introducere: De ce instalațiile sanitare sunt o carieră de viitor</li>
+                        <li>Statistici șocante: Câți instalatori lipsesc în România și Europa</li>
+                        <li>Cât poți câștiga REALIST: Începător vs Experimentat (România vs UE)</li>
+                        <li>Tipuri de lucrări și prețuri de piață (exemple concrete cu facturi)</li>
+                        <li>Calea rapidă: De la zero la primele câștiguri în 3-6 luni</li>
+                        <li>Sesiune Q&A</li>
+                    </ul>
+                </div>
+                <div class="day">
+                    <h3>🗓️ Ziua 2 - Miercuri, 20:00-21:30: Traseul Tău</h3>
+                    <ul>
+                        <li>Studii de caz: Absolvenți care câștigă deja bine</li>
+                        <li>Ce vei învăța în cursurile noastre (Basic, Avansat, Premium)</li>
+                        <li>Certificări și autorizări: Ce ai nevoie pentru a lucra legal</li>
+                        <li>Oportunități internaționale: Cum pleci la muncă în UE</li>
+                        <li>Echipamente și investiții inițiale (buget realist)</li>
+                        <li>Pasul următor: Cum te înscrii la cursurile plătite</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Cine Te Va Învăța</h2>
+            <div class="instructors">
+                <div class="instructor-card">
+                    <h3>Richard Vincze</h3>
+                    <p class="instructor-role">Co-fondator Mestr | Expert Business & Vânzări</p>
+                    <p>Experiență vastă în dezvoltare de business și comunicare. Îți va arăta cum să transformi meseria în afacere profitabilă și cum să-ți construiești o carieră de succes.</p>
+                </div>
+                <div class="instructor-card">
+                    <h3>Urbanowski Cristian</h3>
+                    <p class="instructor-role">Inginer Expert | 7+ Ani Experiență</p>
+                    <p>Peste 7 ani de experiență practică în instalații sanitare. Inginer expert care a lucrat pe sute de proiecte, de la instalații rezidențiale la complexe comerciale.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="inscriere">
+            <div class="form-section">
+                <div class="form-container">
+                    <div class="urgency-banner">
+                        ⚠️ DOAR 20 DE LOCURI DISPONIBILE PER SESIUNE! ⚠️
+                    </div>
+                    
+                    <h2 style="text-align: center; margin-bottom: 2rem;">Înscrie-te GRATUIT Acum</h2>
+                    
+                    <form id="registrationForm">
+                        <div class="form-group">
+                            <label for="name">Nume și Prenume *</label>
+                            <input type="text" id="name" name="name" required placeholder="Ex: Popescu Ion">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required placeholder="exemplu@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Telefon *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="07XX XXX XXX">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Vârsta *</label>
+                            <input type="number" id="age" name="age" required placeholder="Ex: 25" min="18" max="100">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experience">Ai experiență anterioară în domeniu? *</label>
+                            <select id="experience" name="experience" required>
+                                <option value="">Selectează...</option>
+                                <option value="none">Nu, sunt începător</option>
+                                <option value="some">Da, am câteva cunoștințe</option>
+                                <option value="advanced">Da, lucrez deja în domeniu</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="motivation">De ce vrei să devii instalator? *</label>
+                            <textarea id="motivation" name="motivation" required placeholder="Spune-ne în câteva cuvinte ce te motivează..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="availability">Cum ai aflat de noi?</label>
+                            <select id="source" name="source">
+                                <option value="">Selectează...</option>
+                                <option value="facebook">Facebook</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="google">Google</option>
+                                <option value="friend">Recomandare de la un prieten</option>
+                                <option value="other">Altceva</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">
+                            REZERVĂ-MI LOCUL GRATUIT →
+                        </button>
+
+                        <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem;">
+                            * Câmpuri obligatorii
+                        </p>
+                    </form>
+
+                    <div id="successMessage" class="success-message">
+                        <h3>🎉 Felicitări! Înscrierea ta a fost înregistrată!</h3>
+                        <p>Vei fi contactat în curând cu detaliile de acces pe Zoom.</p>
+                        <p>Verifică-ți emailul și telefonul!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div style="background: #f8f9fa; padding: 3rem; border-radius: 20px; text-align: center;">
+                <h2 style="color: #1e3c72; margin-bottom: 1.5rem;">Ce Trebuie Să Ai Pregătit?</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">✅ Conexiune la internet stabilă</p>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">✅ Computer, laptop sau telefon</p>
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">✅ Pix și caiet pentru notițe</p>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem;">✅ Entuziasm și dorință de schimbare!</p>
+                <p style="color: #666;">Link-ul de Zoom îl vei primi cu 24h înainte de curs.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer style="background: #1e3c72; color: white; padding: 2rem; text-align: center;">
+        <h3 style="margin-bottom: 1rem;">MESTR - Educație Profesională în Instalații Sanitare</h3>
+        <p>📞 0771 354 408 | ✉️ vincze.richard@yahoo.com</p>
+        <p style="margin-top: 1rem; opacity: 0.8;">© 2025 Mestr. Toate drepturile rezervate.</p>
+    </footer>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Colectează datele din formular
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                age: document.getElementById('age').value,
+                experience: document.getElementById('experience').value,
+                motivation: document.getElementById('motivation').value,
+                source: document.getElementById('source').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Log datele în consolă (tu vei integra cu backend-ul tău)
+            console.log('Înscriere nouă:', formData);
+            
+            // Aici vei adăuga logica pentru a trimite datele către serverul tău
+            // fetch('/api/register', { method: 'POST', body: JSON.stringify(formData) })
+            
+            // Ascunde formularul și arată mesajul de succes
+            document.getElementById('registrationForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Scroll la mesaj
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Smooth scroll pentru CTA buttons
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

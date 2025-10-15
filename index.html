@@ -3,684 +3,1179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mestr - Curs GRATUIT: Devino Instalator Profesionist</title>
+    <title>Mestr Academy - Devino Instalator Profesionist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* ============================================
+           DESIGN SYSTEM - DARK MODE
+           ============================================ */
+        :root {
+            /* Dark Colors */
+            --color-bg-primary: #0F1419;
+            --color-bg-secondary: #1A1F26;
+            --color-bg-elevated: #242930;
+            --color-text-primary: #FFFFFF;
+            --color-text-secondary: #A0A8B3;
+            --color-accent-blue: #3B9EFF;
+            --color-accent-blue-hover: #2D8FED;
+            --color-border: #2D3339;
+            --color-border-light: #3A4149;
+            
+            /* Typography */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 0.75rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+            --spacing-2xl: 3rem;
+            --spacing-3xl: 4rem;
+            --spacing-4xl: 6rem;
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--font-family);
+            background: var(--color-bg-primary);
+            color: var(--color-text-primary);
             line-height: 1.6;
-            color: #333;
             overflow-x: hidden;
         }
 
-        .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 1rem 2rem;
-            position: sticky;
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav-header {
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--color-bg-primary);
+            border-bottom: 1px solid var(--color-border);
+            padding: 1rem 2rem;
         }
 
-        .header-content {
-            max-width: 1200px;
+        .nav-container {
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo-container {
+        .nav-logo {
             display: flex;
             align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--color-text-primary);
+        }
+
+        .nav-logo-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--color-accent-blue);
+        }
+
+        .nav-logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
             gap: 1rem;
+            align-items: center;
         }
 
-        .logo-text {
-            font-size: 2rem;
-            font-weight: bold;
-            letter-spacing: 2px;
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-family);
+            font-size: 0.9375rem;
         }
 
-        .contact-info {
-            font-size: 0.9rem;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .btn-primary {
+            background: var(--color-accent-blue);
             color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,0 Q300,50 600,20 T1200,30 L1200,0 Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            opacity: 0.3;
+        .btn-primary:hover {
+            background: var(--color-accent-blue-hover);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-accent-blue);
+            color: var(--color-accent-blue);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-accent-blue);
+            color: white;
+        }
+
+        .lang-switcher {
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ============================================
+           HERO SECTION - DARK MODE
+           ============================================ */
+        .hero {
+            margin-top: 80px;
+            padding: var(--spacing-4xl) var(--spacing-xl);
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
+            min-height: calc(100vh - 80px);
         }
 
         .hero-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero h2 {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease 0.2s backwards;
-        }
-
-        .badge {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            animation: pulse 2s infinite;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 1rem 2.5rem;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255,107,107,0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255,107,107,0.6);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .section {
-            margin-bottom: 4rem;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #1e3c72;
-        }
-
-        .benefits {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .benefit-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .benefit-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .benefit-card h3 {
-            color: #1e3c72;
-            margin-bottom: 1rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            padding: 3rem 2rem;
-            border-radius: 20px;
-            color: white;
-        }
-
-        .stat h3 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .program {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-        }
-
-        .day {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            border-radius: 10px;
-            border-left: 5px solid #667eea;
-        }
-
-        .day h3 {
-            color: #1e3c72;
-            margin-bottom: 1rem;
-        }
-
-        .day ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .day li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .day li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #51cf66;
-            font-weight: bold;
-        }
-
-        .instructors {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .instructor-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .instructor-card h3 {
-            color: #1e3c72;
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
-        }
-
-        .instructor-role {
-            color: #667eea;
-            font-weight: bold;
-            margin-bottom: 1rem;
-        }
-
-        .form-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 4rem 2rem;
-            border-radius: 20px;
-            color: white;
-        }
-
-        .form-container {
             max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid var(--color-border-light);
+            border-radius: 4px;
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing-lg);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-badge svg {
+            width: 16px;
+            height: 16px;
+            color: var(--color-accent-blue);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-lg);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid var(--color-border);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-image-badge {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: rgba(15, 20, 25, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--color-border-light);
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .badge-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-accent-blue);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .badge-icon svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        .badge-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .badge-text strong {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .badge-text span {
+            font-size: 0.8125rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* ============================================
+           COURSES SECTION - DARK HORIZONTAL CARDS
+           ============================================ */
+        .courses-section {
+            padding: var(--spacing-4xl) var(--spacing-xl);
+            max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .courses-header {
+            display: grid;
+            grid-template-columns: 2fr 3fr 2fr;
+            gap: var(--spacing-3xl);
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .courses-intro h2 {
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .courses-intro p {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .cert-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .cert-badge svg {
+            color: var(--color-accent-blue);
+        }
+
+        .courses-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        .course-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--spacing-lg);
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .course-card:hover {
+            border-color: var(--color-accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .course-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-bg-elevated);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .course-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--color-accent-blue);
+        }
+
+        .course-info h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-info p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+            line-height: 1.5;
+            margin-bottom: 0.75rem;
+        }
+
+        .course-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .course-tag {
+            padding: 0.25rem 0.75rem;
+            background: var(--color-bg-elevated);
+            border: 1px dashed var(--color-border);
+            border-radius: 4px;
+            font-size: 0.8125rem;
+            color: var(--color-text-secondary);
+        }
+
+        .courses-advanced {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+        }
+
+        .courses-advanced h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .courses-advanced p {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.5;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: var(--color-bg-elevated);
+            border: 1px dashed var(--color-border);
+            border-radius: 4px;
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .feature-item svg {
+            width: 16px;
+            height: 16px;
+            color: var(--color-accent-blue);
+        }
+
+        /* ============================================
+           TESTIMONIALS SECTION
+           ============================================ */
+        .testimonials-section {
+            padding: var(--spacing-4xl) var(--spacing-xl);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonials-section h2 {
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        .testimonial-featured {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-xl);
+            grid-column: span 2;
+        }
+
+        .testimonial-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--color-accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .testimonial-text {
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-text-primary);
+        }
+
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .testimonial-author strong {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .testimonial-author span {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .testimonials-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+
+        /* ============================================
+           ENROLL SECTION - FORM
+           ============================================ */
+        .enroll-section {
+            padding: var(--spacing-4xl) var(--spacing-xl);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .enroll-container {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-3xl);
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--spacing-3xl);
+        }
+
+        .enroll-info h2 {
+            font-size: clamp(1.75rem, 3vw, 2.25rem);
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            line-height: 1.2;
+        }
+
+        .enroll-info > p {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .step-item {
+            display: flex;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--color-accent-blue);
+            color: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .step-content span {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+        }
+
+        .enroll-form {
+            background: var(--color-bg-elevated);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
         }
 
         .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
+        .form-group select {
+            padding: 0.75rem;
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            color: var(--color-text-primary);
+            font-family: var(--font-family);
             font-size: 1rem;
         }
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .urgency-banner {
-            background: #ff6b6b;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            border-radius: 10px;
-            animation: pulse 2s infinite;
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: 2px solid var(--color-accent-blue);
+            border-color: var(--color-accent-blue);
         }
 
         .success-message {
             display: none;
-            background: #51cf66;
+            background: #10B981;
             color: white;
-            padding: 2rem;
-            border-radius: 15px;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
             text-align: center;
-            font-size: 1.2rem;
         }
 
-        .details-box {
-            background: rgba(255,255,255,0.1);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin: 2rem 0;
+        .success-message.show {
+            display: block;
         }
 
-        .details-box ul {
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--color-bg-secondary);
+            border-top: 1px solid var(--color-border);
+            padding: var(--spacing-3xl) var(--spacing-xl) var(--spacing-xl);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: var(--spacing-3xl);
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-brand p {
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .footer-column h4 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-text-secondary);
+        }
+
+        .footer-links {
             list-style: none;
-            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
         }
 
-        .details-box li {
-            padding: 0.5rem 0;
-            font-size: 1.1rem;
+        .footer-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
         }
 
-        .details-box strong {
-            color: #ffd43b;
+        .footer-links a:hover {
+            color: var(--color-text-primary);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .footer-bottom {
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+        .footer-legal {
+            display: flex;
+            gap: var(--spacing-lg);
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero h2 {
-                font-size: 1.2rem;
+        .footer-legal a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-legal a:hover {
+            color: var(--color-text-primary);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 991px) {
+            .nav-links {
+                display: none;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .mobile-toggle {
+                display: block;
             }
 
-            .header-content {
-                flex-direction: column;
+            .hero {
+                grid-template-columns: 1fr;
                 text-align: center;
-                gap: 1rem;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .courses-header {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-featured {
+                grid-column: 1;
+            }
+
+            .enroll-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero {
+                padding: var(--spacing-2xl) var(--spacing-md);
+            }
+
+            .courses-section,
+            .testimonials-section,
+            .enroll-section {
+                padding: var(--spacing-2xl) var(--spacing-md);
+            }
+
+            .course-card {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: var(--spacing-md);
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo-container">
-                <div class="logo-text">MESTR</div>
-            </div>
-            <div class="contact-info">
-                📞 0771 354 408 | ✉️ vincze.richard@yahoo.com
+    <!-- NAVIGATION -->
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <svg class="nav-logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg>
+                <span class="nav-logo-text">Mestr Academy</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#courses" class="nav-link">Cursuri</a></li>
+                <li><a href="#testimonials" class="nav-link">Testimoniale</a></li>
+                <li><a href="#instructors" class="nav-link">Instructori</a></li>
+                <li><a href="#prices" class="nav-link">Prețuri</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="lang-switcher">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    English
+                </button>
+                <button class="mobile-toggle">☰</button>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <section class="hero">
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
         <div class="hero-content">
-            <div class="badge">🎓 CURS 100% GRATUIT</div>
-            <h1>Descoperă Cum Poți Câștiga 3.000-6.000€/Lună ca Instalator Profesionist</h1>
-            <h2>Workshop GRATUIT de 2 zile care îți arată exact cum să construiești o carieră profitabilă în instalații sanitare</h2>
-            <a href="#inscriere" class="cta-button">VREAU LOC GRATUIT →</a>
-            
-            <div class="details-box">
-                <ul>
-                    <li><strong>📅 Când:</strong> Marți & Miercuri, Săptămânal | 20:00 - 21:30</li>
-                    <li><strong>💻 Unde:</strong> Online pe Zoom (de acasă)</li>
-                    <li><strong>💰 Preț:</strong> GRATUIT (locuri limitate)</li>
-                    <li><strong>👥 Locuri:</strong> Doar 20 de participanți/sesiune</li>
-                </ul>
+            <div class="hero-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg>
+                Certificare Profesională
+            </div>
+            <h1 class="hero-title">Mestr Academy — Formează instalatori gata de teren</h1>
+            <p class="hero-subtitle">Devino instalator profesional: cursuri practice, tehnici moderne și certificare recunoscută. Pregătire rapidă pentru joburi reale în medii industriale și urbane.</p>
+            <a href="#enroll" class="btn btn-outline">Înscrie-te acum — locuri limitate</a>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://images.pexels.com/photos/29226620/pexels-photo-29226620.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Instalator profesionist">
+            <div class="hero-image-badge">
+                <div class="badge-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/><path d="M13 17.5V22l2-1.5l2 1.5v-4.5"/><path d="M10 19H5a2 2 0 0 1-2-2V7c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-1 1.73M6 9h12M6 12h3m-3 3h2"/></svg>
+                </div>
+                <div class="badge-text">
+                    <strong>Certificat profesional</strong>
+                    <span>Recunoscut în industrie</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="container">
-        <section class="section">
-            <div class="stats">
-                <div class="stat">
-                    <h3>3.000-6.000€</h3>
-                    <p>Câștig lunar mediu în Europa</p>
-                </div>
-                <div class="stat">
-                    <h3>500.000+</h3>
-                    <p>Locuri de muncă disponibile în UE</p>
-                </div>
-                <div class="stat">
-                    <h3>2 zile</h3>
-                    <p>Pentru a descoperi potențialul</p>
+    <!-- COURSES SECTION -->
+    <section class="courses-section" id="courses">
+        <div class="courses-header">
+            <div class="courses-intro">
+                <h2>Cursuri cheie — trasee practrice, rezultat certificat</h2>
+                <p>Traseul Mestr Academy e construit în etape clare: bază tehnică, specializări profesionale, practice pe instalații reale și certificare finală recunoscută.</p>
+                <div class="cert-badge">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+                    Certificare Mestr garantată
                 </div>
             </div>
-        </section>
 
-        <section class="section">
-            <h2 class="section-title">Ce Vei Descoperi în Acest Workshop GRATUIT</h2>
-            <div class="benefits">
-                <div class="benefit-card">
-                    <div class="benefit-icon">💰</div>
-                    <h3>Potențialul de Câștig REAL</h3>
-                    <p>Cifre exacte: cât câștigi în România vs străinătate, prețuri pe lucrări, venit lunar realist pentru începători și profesioniști</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">📈</div>
-                    <h3>Cererea de Pe Piață</h3>
-                    <p>Date concrete despre lipsa de instalatori în România și UE, oportunități de angajare și freelancing, perspective pe termen lung</p>
-                </div>
-                <div class="benefit-card">
-                    <div-icon">🔧</div>
-                    <h3>Ce Lucrări Poți Face</h3>
-                    <p>Exemple reale de proiecte: de la instalații simple la complexe, prețuri pe piață, ce clienți vei avea</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🎯</div>
-                    <h3>Traseul Tău Exact</h3>
-                    <p>Pași clari de la zero la instalator profesionist, ce cursuri/certificări sunt necesare, cât timp îți ia</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">🌍</div>
-                    <h3>Oportunități Internaționale</h3>
-                    <p>Cum poți lucra legal în Germania, Austria, UK, Olanda, programe de recrutare, salarii comparative</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">✅</div>
-                    <h3>Dovezi Concrete</h3>
-                    <p>Facturi reale, contracte, studii de caz, testimoniale de la absolvenți care deja lucrează</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Programul Celor 2 Zile</h2>
-            <div class="program">
-                <div class="day">
-                    <h3>🗓️ Ziua 1 - Marți, 20:00-21:30: Oportunitatea</h3>
-                    <ul>
-                        <li>Introducere: De ce instalațiile sanitare sunt o carieră de viitor</li>
-                        <li>Statistici șocante: Câți instalatori lipsesc în România și Europa</li>
-                        <li>Cât poți câștiga REALIST: Începător vs Experimentat (România vs UE)</li>
-                        <li>Tipuri de lucrări și prețuri de piață (exemple concrete cu facturi)</li>
-                        <li>Calea rapidă: De la zero la primele câștiguri în 3-6 luni</li>
-                        <li>Sesiune Q&A</li>
-                    </ul>
-                </div>
-                <div class="day">
-                    <h3>🗓️ Ziua 2 - Miercuri, 20:00-21:30: Traseul Tău</h3>
-                    <ul>
-                        <li>Studii de caz: Absolvenți care câștigă deja bine</li>
-                        <li>Ce vei învăța în cursurile noastre (Basic, Avansat, Premium)</li>
-                        <li>Certificări și autorizări: Ce ai nevoie pentru a lucra legal</li>
-                        <li>Oportunități internaționale: Cum pleci la muncă în UE</li>
-                        <li>Echipamente și investiții inițiale (buget realist)</li>
-                        <li>Pasul următor: Cum te înscrii la cursurile plătite</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Cine Te Va Învăța</h2>
-            <div class="instructors">
-                <div class="instructor-card">
-                    <h3>Richard Vincze</h3>
-                    <p class="instructor-role">Co-fondator Mestr | Expert Business & Vânzări</p>
-                    <p>Experiență vastă în dezvoltare de business și comunicare. Îți va arăta cum să transformi meseria în afacere profitabilă și cum să-ți construiești o carieră de succes.</p>
-                </div>
-                <div class="instructor-card">
-                    <h3>Urbanowski Cristian</h3>
-                    <p class="instructor-role">Inginer Expert | 7+ Ani Experiență</p>
-                    <p>Peste 7 ani de experiență practică în instalații sanitare. Inginer expert care a lucrat pe sute de proiecte, de la instalații rezidențiale la complexe comerciale.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="inscriere">
-            <div class="form-section">
-                <div class="form-container">
-                    <div class="urgency-banner">
-                        ⚠️ DOAR 20 DE LOCURI DISPONIBILE PER SESIUNE! ⚠️
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg>
                     </div>
-                    
-                    <h2 style="text-align: center; margin-bottom: 2rem;">Înscrie-te GRATUIT Acum</h2>
-                    
-                    <form id="registrationForm">
-                        <div class="form-group">
-                            <label for="name">Nume și Prenume *</label>
-                            <input type="text" id="name" name="name" required placeholder="Ex: Popescu Ion">
+                    <div class="course-info">
+                        <h3>Instalator – Fundament</h3>
+                        <p>Instalații sanitare, citire planuri, materialologie. Stăpânești uneltele, elementele de montaj și normele de siguranță.</p>
+                        <div class="course-tags">
+                            <span class="course-tag">Practică hands-on</span>
+                            <span class="course-tag">Certificat inclus</span>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required placeholder="exemplu@email.com">
+                <div class="course-card">
+                    <div class="course-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 14l4-4M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+                    </div>
+                    <div class="course-info">
+                        <h3>Reparare & Diagnostic</h3>
+                        <p>Detectare scurgeri, soluții rapide, tehnici de depanare. Accent pe viteză și precizie în mediu urban.</p>
+                        <div class="course-tags">
+                            <span class="course-tag">Metodologie practică</span>
+                            <span class="course-tag">Cazuri reale</span>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            <label for="phone">Telefon *</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="07XX XXX XXX">
+                <div class="course-card">
+                    <div class="course-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+                    </div>
+                    <div class="course-info">
+                        <h3>Sisteme termice & apă caldă</h3>
+                        <p>Calcul pierderi, montaj circuite, reglaje și întreținere pentru sisteme rezidențiale și comerciale.</p>
+                        <div class="course-tags">
+                            <span class="course-tag">Tehnici avansate</span>
+                            <span class="course-tag">Conformitate norme</span>
                         </div>
-
-                        <div class="form-group">
-                            <label for="age">Vârsta *</label>
-                            <input type="number" id="age" name="age" required placeholder="Ex: 25" min="18" max="100">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="experience">Ai experiență anterioară în domeniu? *</label>
-                            <select id="experience" name="experience" required>
-                                <option value="">Selectează...</option>
-                                <option value="none">Nu, sunt începător</option>
-                                <option value="some">Da, am câteva cunoștințe</option>
-                                <option value="advanced">Da, lucrez deja în domeniu</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="motivation">De ce vrei să devii instalator? *</label>
-                            <textarea id="motivation" name="motivation" required placeholder="Spune-ne în câteva cuvinte ce te motivează..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="availability">Cum ai aflat de noi?</label>
-                            <select id="source" name="source">
-                                <option value="">Selectează...</option>
-                                <option value="facebook">Facebook</option>
-                                <option value="instagram">Instagram</option>
-                                <option value="google">Google</option>
-                                <option value="friend">Recomandare de la un prieten</option>
-                                <option value="other">Altceva</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">
-                            REZERVĂ-MI LOCUL GRATUIT →
-                        </button>
-
-                        <p style="text-align: center; margin-top: 1rem; font-size: 0.9rem;">
-                            * Câmpuri obligatorii
-                        </p>
-                    </form>
-
-                    <div id="successMessage" class="success-message">
-                        <h3>🎉 Felicitări! Înscrierea ta a fost înregistrată!</h3>
-                        <p>Vei fi contactat în curând cu detaliile de acces pe Zoom.</p>
-                        <p>Verifică-ți emailul și telefonul!</p>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <section class="section">
-            <div style="background: #f8f9fa; padding: 3rem; border-radius: 20px; text-align: center;">
-                <h2 style="color: #1e3c72; margin-bottom: 1.5rem;">Ce Trebuie Să Ai Pregătit?</h2>
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;">✅ Conexiune la internet stabilă</p>
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;">✅ Computer, laptop sau telefon</p>
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;">✅ Pix și caiet pentru notițe</p>
-                <p style="font-size: 1.2rem; margin-bottom: 2rem;">✅ Entuziasm și dorință de schimbare!</p>
-                <p style="color: #666;">Link-ul de Zoom îl vei primi cu 24h înainte de curs.</p>
+            <div class="courses-advanced">
+                <h3>Specializare Avansată</h3>
+                <p>Sudură pe instalații, pompe și automatizări, intervenții pe instalații mari — pentru cei care vor responsabilitate tehnică sporită.</p>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4m8-4v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                        <span>Sesiuni flexible</span>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
+                        <span>Laboratoare echipate</span>
+                    </div>
+                </div>
+                <a href="#enroll" class="btn btn-primary">Vezi detalii cursuri</a>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <footer style="background: #1e3c72; color: white; padding: 2rem; text-align: center;">
-        <h3 style="margin-bottom: 1rem;">MESTR - Educație Profesională în Instalații Sanitare</h3>
-        <p>📞 0771 354 408 | ✉️ vincze.richard@yahoo.com</p>
-        <p style="margin-top: 1rem; opacity: 0.8;">© 2025 Mestr. Toate drepturile rezervate.</p>
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials-section" id="testimonials">
+        <h2>Ce spun absolvenții Mestr</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-featured">
+                <p class="testimonial-text">Am venit fără experiență, am plecat instalator certificat. Cursurile Mestr sunt directe, practice și exacte — ca un scule bine reglate. Acum lucrez pentru proiecte rezidențiale și am dublat tariful.</p>
+                <div class="testimonial-author">
+                    <strong>Andrei P.</strong>
+                    <span>Absolvent 2024</span>
+                </div>
+            </div>
+
+            <div class="testimonials-column">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Atmosfera e industrială, dar primitoare: ateliere reale, instructori din teren și feedback imediat. În două luni am învățat lucruri pe care alții le învață în ani.</p>
+                    <div class="testimonial-author">
+                        <strong>Maria T.</strong>
+                        <span>Instalator în echipa startup-ului meu</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Materialele sunt clare, demonstrațiile precise, iar testele practice te pregătesc pentru job real. Certificatul Mestr mi-a deschis ușa către angajatori serioși.</p>
+                    <div class="testimonial-author">
+                        <strong>Sorin D.</strong>
+                        <span>Tehnician întreținere</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonials-column">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Mi-a plăcut combinația între tehnică tradițională și soluții moderne. Simbolul lor? Profesionalism robust, fără fasoane.</p>
+                    <div class="testimonial-author">
+                        <strong>Elena V.</strong>
+                        <span>Freelancer</span>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Cursul m-a făcut să înțeleg logica instalațiilor, nu doar să urmez rețete. Execut cu încredere și eficiență.</p>
+                    <div class="testimonial-author">
+                        <strong>Radu M.</strong>
+                        <span>Absolvent avansat</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENROLL SECTION -->
+    <section class="enroll-section" id="enroll">
+        <div class="enroll-container">
+            <div class="enroll-info">
+                <h2>Înscrie-te acum — Începe cariera de instalator profesionist</h2>
+                <p>Pregătire practică, rapidă și recunoscută: 3 pași simpli spre certificat</p>
+                
+                <div class="steps-list">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <strong>Completează formularul scurt</strong>
+                            <span>Nume, contact, nivel experiență</span>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <strong>Alege modulul și data de început</strong>
+                            <span>Locuri limitate pentru sesiuni practice</span>
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <strong>Confirmare și plata securizată</strong>
+                            <span>Kit profesional inclus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="enroll-form-container">
+                <form class="enroll-form" id="enrollForm">
+                    <div class="form-group">
+                        <label>Nume complet</label>
+                        <input type="text" name="name" placeholder="Numele tău" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="email@exemplu.ro" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon</label>
+                        <input type="tel" name="phone" placeholder="+40 xxx xxx xxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Vârsta</label>
+                        <input type="number" name="age" placeholder="Ex: 25" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Experiență anterioară</label>
+                        <select name="experience" required>
+                            <option value="">Selectează...</option>
+                            <option value="none">Nu, sunt începător</option>
+                            <option value="some">Da, am câteva cunoștințe</option>
+                            <option value="advanced">Da, lucrez deja în domeniu</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Alege cursul</label>
+                        <select name="course" required>
+                            <option value="">Selectează modulul</option>
+                            <option value="fundament">Instalator – Fundament</option>
+                            <option value="diagnostic">Reparare & Diagnostic</option>
+                            <option value="termice">Sisteme termice & apă caldă</option>
+                            <option value="avansat">Specializare Avansată</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Trimite cererea</button>
+                </form>
+
+                <div class="success-message" id="successMessage">
+                    <h3>🎉 Mulțumim pentru înscriere!</h3>
+                    <p>Vei fi contactat în curând cu detaliile cursului.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Mestr Academy</h3>
+                    <p>Excelență în meserie. Viitor în instalații.</p>
+                    <p>Formăm profesioniști în domeniul instalațiilor sanitare prin cursuri practice și certificare recunoscută.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Navigare</h4>
+                    <ul class="footer-links">
+                        <li><a href="#courses">Cursuri</a></li>
+                        <li><a href="#testimonials">Testimoniale</a></li>
+                        <li><a href="#instructors">Instructori</a></li>
+                        <li><a href="#prices">Prețuri</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Programe</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Curs Instalator Sanitar</a></li>
+                        <li><a href="#">Certificare Profesională</a></li>
+                        <li><a href="#">Formare Avansată</a></li>
+                        <li><a href="#">Workshop-uri Practice</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="tel:+40771354408">+40 771 354 408</a></li>
+                        <li><a href="mailto:vincze.richard@yahoo.com">vincze.richard@yahoo.com</a></li>
+                        <li>București, România</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Mestr Academy. Toate drepturile rezervate.</p>
+                <div class="footer-legal">
+                    <a href="#">Termeni și Condiții</a>
+                    <a href="#">Politica de Confidențialitate</a>
+                    <a href="#">GDPR</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <script>
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        // Form submission
+        document.getElementById('enrollForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Colectează datele din formular
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                age: document.getElementById('age').value,
-                experience: document.getElementById('experience').value,
-                motivation: document.getElementById('motivation').value,
-                source: document.getElementById('source').value,
-                timestamp: new Date().toISOString()
+            const formData = new FormData(this);
+            const data = {
+                timestamp: new Date().toISOString(),
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                age: formData.get('age'),
+                experience: formData.get('experience'),
+                course: formData.get('course')
             };
             
-            // Log datele în consolă (tu vei integra cu backend-ul tău)
-            console.log('Înscriere nouă:', formData);
+            // AICI VOI ADĂUGA URL-UL DE LA GOOGLE SHEETS
+            const scriptURL = 'PUNE-AICI-URL-UL-TAU-DE-LA-GOOGLE-APPS-SCRIPT';
             
-            // <script>
-    document.getElementById('registrationForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Colectează datele din formular
-        const formData = {
-            timestamp: new Date().toLocaleString('ro-RO', { timeZone: 'Europe/Bucharest' }),
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            age: document.getElementById('age').value,
-            experience: document.getElementById('experience').value,
-            motivation: document.getElementById('motivation').value,
-            source: document.getElementById('source').value
-        };
-        
-        // PUNE AICI URL-UL TĂU DE LA APPS SCRIPT
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzwtq21jd-JgqqiFG_VuZpRB6Kv4uXWki_3TMmktMNEFPlIX-nqLo4HyyhALTrSbMz5nw/exec';
-        
-        // Trimite datele către Google Sheets
-        fetch(scriptURL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => {
-            console.log('Înscriere trimisă cu succes!');
-            // Ascunde formularul și arată mesajul de succes
-            document.getElementById('registrationForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-        })
-        .catch(error => {
-            console.error('Eroare:', error);
-            alert('A apărut o eroare. Te rugăm să încerci din nou sau să ne contactezi direct.');
-        });
-    });
-
-    // Smooth scroll pentru CTA buttons
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
-</script>
-            // fetch('/api/register', { method: 'POST', body: JSON.stringify(formData) })
-            
-            // Ascunde formularul și arată mesajul de succes
-            document.getElementById('registrationForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-            
-            // Scroll la mesaj
-            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                document.getElementById('enrollForm').style.display = 'none';
+                document.getElementById('successMessage').classList.add('show');
+                
+                setTimeout(() => {
+                    document.getElementById('enrollForm').style.display = 'flex';
+                    document.getElementById('successMessage').classList.remove('show');
+                    document.getElementById('enrollForm').reset();
+                }, 3000);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('A apărut o eroare. Te rugăm să încerci din nou.');
+            });
         });
 
-        // Smooth scroll pentru CTA buttons
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
+
+        // Navigation scroll effect
+        let lastScroll = 0;
+        const nav = document.querySelector('.nav-header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 80) {
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                nav.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        nav.style.transition = 'transform 0.3s ease';
     </script>
 </body>
 </html>
